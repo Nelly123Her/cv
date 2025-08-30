@@ -457,10 +457,24 @@ section {
     background: rgba(0, 212, 255, 0.08);
 }
 
-.cert-icon {
-    font-size: 2rem;
-    color: #00d4ff;
-    min-width: 50px;
+.cert-badge {
+    min-width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-image {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.cert-item:hover .cert-image {
+    transform: scale(1.05);
 }
 
 .cert-info h4 {
@@ -2300,9 +2314,14 @@ section {
         gap: 12px;
     }
 
-    .cert-icon {
-        font-size: 1.8rem;
-        min-width: auto;
+    .cert-badge {
+        min-width: 60px;
+        height: 60px;
+    }
+    
+    .cert-image {
+        width: 50px;
+        height: 50px;
     }
 
     .skills-cta {
@@ -2520,9 +2539,7 @@ section {
         gap: 10px;
     }
 
-    .cert-icon {
-        font-size: 1.5rem;
-    }
+
 
     .cert-info h4 {
         font-size: 1rem;
