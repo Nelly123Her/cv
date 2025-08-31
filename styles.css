@@ -1989,23 +1989,49 @@ section {
     }
 
     .timeline::before {
-        left: 20px;
-        transform: none;
-        width: 2px;
+        display: none;
     }
 
     .timeline-item {
         width: 100%;
         left: 0;
-        padding-left: 50px;
+        padding-left: 0;
         padding-right: 10px;
         text-align: left;
         margin: 25px 0;
     }
 
+    /* Force stacked items and neutralize desktop split rules */
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Override per-side marker positioning from desktop */
+    .timeline-item:nth-child(odd) .timeline-marker,
+    .timeline-item:nth-child(even) .timeline-marker {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 auto 12px auto !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
     .timeline-item .timeline-marker {
-        left: 10px;
-        top: 15px;
+        position: relative;
+        left: auto;
+        right: auto;
+        top: 0;
+        width: 100%;
+        margin: 0 auto 12px auto;
+        display: flex;
+        justify-content: center;
     }
 
     .timeline-dot {
@@ -2022,6 +2048,10 @@ section {
         border-radius: 12px;
         margin-bottom: 15px;
         margin-left: 5px;
+        width: 100%;
+        margin: 0;
+        padding: 16px;
+        box-sizing: border-box;
     }
 
     .timeline-header {
@@ -2059,6 +2089,7 @@ section {
     .role-tags {
         gap: 6px;
         margin-bottom: 20px;
+        flex-wrap: wrap;
     }
 
     .tag {
@@ -2076,6 +2107,8 @@ section {
     }
 
     .achievement-grid {
+        display: grid;
+        grid-template-columns: 1fr;
         gap: 12px;
     }
 
@@ -2371,18 +2404,46 @@ section {
     }
 
     .timeline::before {
-        left: 15px;
+        display: none;
     }
 
     .timeline-item {
-        padding-left: 40px;
+        padding-left: 0;
         padding-right: 8px;
         margin: 20px 0;
     }
 
+    /* Force stacked items and neutralize desktop split rules (XS) */
+    .timeline-item:nth-child(odd),
+    .timeline-item:nth-child(even) {
+        left: 0 !important;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+        width: 100% !important;
+    }
+
+    /* Override per-side marker positioning from desktop (XS) */
+    .timeline-item:nth-child(odd) .timeline-marker,
+    .timeline-item:nth-child(even) .timeline-marker {
+        position: relative !important;
+        left: auto !important;
+        right: auto !important;
+        top: 0 !important;
+        width: 100% !important;
+        margin: 0 auto 10px auto !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
     .timeline-item .timeline-marker {
-        left: 5px;
-        top: 12px;
+        position: relative;
+        left: auto;
+        right: auto;
+        top: 0;
+        width: 100%;
+        margin: 0 auto 12px auto;
+        display: flex;
+        justify-content: center;
     }
 
     .timeline-dot {
@@ -2617,4 +2678,14 @@ section {
 .loading.loaded {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* Accessibility: reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+  * { 
+    animation-duration: 0.001ms !important; 
+    animation-iteration-count: 1 !important; 
+    transition-duration: 0.001ms !important; 
+    scroll-behavior: auto !important; 
+  }
 }
